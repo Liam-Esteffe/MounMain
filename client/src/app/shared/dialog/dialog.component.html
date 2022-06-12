@@ -1,0 +1,61 @@
+<h1 mat-dialog-title>Add new task</h1>
+<!-- component -->
+<div class="flex items-center justify-center p-12">
+    <!-- Author: FormBold Team -->
+    <!-- Learn More: https://formbold.com -->
+    <div class="mx-auto w-full max-w-[550px]">
+        <form [formGroup]='TaskForm' action="https://formbold.com/s/FORM_ID" method="POST">
+            <div class="mb-5">
+                <label for="name" class="mb-3 block text-base font-medium text-[#07074D]">
+            Title
+          </label>
+                <input formControlName="title" type="text" name="title" id="title" placeholder="Title of the task" class="w-full rounded-md border border-indigo-500 bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
+                />
+            </div>
+            <div class="mb-5">
+                <label for="email" class="mb-3 block text-base font-medium text-[#07074D]">
+            Subtitle
+          </label>
+                <input type="text" formControlName="subtitle" name="subtitle" id="subtitle" placeholder="subtitle here ..." class="w-full rounded-md border border-indigo-500 bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
+                />
+            </div>
+            <div class="mb-5">
+                <label for="subject" class="mb-3 block text-base font-medium text-[#07074D]">
+            Property
+          </label>
+                <mat-form-field appearance="fill">
+                    <mat-label>Choose a property</mat-label>
+                    <mat-select formControlName="property">
+                        <mat-option *ngFor="let idx of subjects" [value]="idx.value">
+                            {{idx.viewValue}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+            <div class="mb-5">
+                <label for="email" class="mb-3 block text-base font-medium text-[#07074D]">
+              Progression
+            </label>
+                <input formControlName="progress" type="number" name="progress" id="progress" placeholder="Enter your progression on 100%" class="w-full rounded-md border border-indigo-500 bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
+                />
+            </div>
+            <div class="mb-5">
+                <label for="message" class="mb-3 block text-base font-medium text-[#07074D]"></label>
+                <mat-form-field class="example-full-width" appearance="fill">
+                    <mat-label>Choose a date</mat-label>
+                    <input formControlName="deadline" matInput [matDatepicker]="picker">
+                    <mat-hint>MM/DD/YYYY</mat-hint>
+                    <mat-datepicker-toggle matSuffix [for]="picker">
+                        <mat-icon matDatepickerToggleIcon>keyboard_arrow_down</mat-icon>
+                    </mat-datepicker-toggle>
+                    <mat-datepicker #picker></mat-datepicker>
+                </mat-form-field>
+            </div>
+            <div>
+                <button [disabled]="!TaskForm.valid" (click)="sendData()" class="hover:shadow-form rounded-md bg-indigo-500 py-3 px-8 text-base font-semibold text-white outline-none">
+            Submit
+          </button>
+            </div>
+        </form>
+    </div>
+</div>

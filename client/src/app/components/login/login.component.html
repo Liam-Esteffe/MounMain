@@ -1,0 +1,42 @@
+<head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer"
+    />
+</head>
+
+<body>
+    <div class="materialContainer">
+
+        <div *ngIf="state === 'register' ; else ElseBlock">
+            <div class="login-card">
+                <h1>Register</h1><br>
+                <form [formGroup]="RegisterAuth">
+                    <input formControlName='firstname' type="text" name="user" placeholder="Enter your firstname">
+                    <input formControlName='lastname' type="text" name="user" placeholder="Enter your lastname">
+                    <input formControlName='username' type="text" name="user" placeholder="Write a valid username">
+                    <input formControlName='email' type="text" name="user" placeholder="Enter your email">
+                    <input formControlName='password' type="password" name="pass" placeholder="Write your password">
+                    <input (click)="sendData()" type="submit" name="login" class="login login-submit" value="Register for new account">
+                </form>
+
+                <div class="login-help cursor-pointer">
+                    <a (click)="changeState()">Login</a> • <a href="#">Forgot Password</a>
+                </div>
+            </div>
+        </div>
+
+        <ng-template #ElseBlock>
+            <div class="login-card">
+                <h1>Login</h1><br>
+                <form [formGroup]="LoginAuth">
+                    <input formControlName="username" type="text" name="user" placeholder="Fill with your username">
+                    <input formControlName="password" type="password" name="pass" placeholder="Write your password here">
+                    <input (click)="sendData()" type="submit" name="login" class="login login-submit" value="Sign-in">
+                </form>
+
+                <div class="login-help cursor-pointer">
+                    <a (click)="changeState()">Register</a> • <a href="#">Forgot Password</a>
+                </div>
+            </div>
+        </ng-template>
+    </div>
+</body>
